@@ -11,6 +11,7 @@
 			prev:'.prev',
 			next:'.next',
 			index:1,
+			autoPlay:true,
 			data:[]
 		}
 
@@ -26,11 +27,18 @@
 		_this.type = _this.options.type || 'img';
 		_this.prev = typeof _this.options.prev ==='string'? $(_this.options.prev) : _this.options.prev;
 		_this.next = typeof _this.options.next ==='string'? $(_this.options.next) : _this.options.next;
+		_this.index = _this.options.index || 1;
+		_this.autoPlay = _this.options.autoPlay;
 		_this.data = Object.prototype.toString.call(_this.options.data) === '[object Array]'? _this.options.data : [];
 
 		_this.renderHtml();
 		_this.init();
+		_this.handler();
 
+	}
+
+	album.prototype.handler = function() {
+		
 	}
 
 	album.prototype.renderHtml = function() {
@@ -41,11 +49,13 @@
 
 		if(this.type == 'img') {
 			for(var i = 0;i < len;i++) {
-				cont += '<li><img src="' + _this.data[i] + '"></li>';	
+				var klass = i == 0? "current" : "hidden";
+				cont += '<li class='+ klass +'><img src="' + _this.data[i] + '"></li>';	
 			}	
 		} else {
 			for(var i = 0;i < len;i++) {
-				cont += '<li>' + _this.data[i] + '</li>';	
+				var klass = i == 0? "current" : "hidden";
+				cont += '<li class='+ klass +'>' + _this.data[i] + '</li>';	
 			}	
 		}
 		
@@ -58,7 +68,7 @@
 	}
 
 	album.prototype.nextSlide = function() {
-		
+		console.log(1);
 	}
 
 	album.prototype.swithTo = function(index) {
@@ -76,10 +86,12 @@
 		if(_this.timer) {
 			return false;
 		}
-		this.timer = setInterval(function(){
-			_this.nextSlide();	
-		},_this.time);
-
+		if(_this.autoPlay) {
+			this.timer = setInterval(function(){
+				_this.nextSlide();
+			},_this.time);	
+		}
+		
 	
 	}
 
