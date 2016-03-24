@@ -5,10 +5,11 @@
 		.album {
 			width: 100%;
 			height: 300px;
-			
+			position: relative;
 		}
 
 		.album ul {
+			width: 10000px;
 			height:100%;
 			overflow: hidden;
 			padding: 0;
@@ -16,7 +17,6 @@
 		}
 
 		.album ul li {
-			width: 100%;
 			float: left;
 			list-style: none;
 		}
@@ -35,6 +35,22 @@
 			opacity: 0;
 		}
 
+		.album span {
+			background-color: rgba(0,0,0,.4);
+			position: absolute;
+			left: 0;
+			top: 50%;
+			width: 30px;
+			height: 50px;
+			content: "<";
+			color: #FFF;
+		}
+
+		.album span.next {
+			left: 96%;
+			content: ">";
+		}
+
 
 
 	</style>
@@ -49,22 +65,23 @@
 	server-data: ${title},${message}!!
 </div>
 
-<div class="album"></div>
+<div class="album">
+</div>
 <script type="text/javascript" src="http://apps.bdimg.com/libs/zepto/1.1.4/zepto.js"></script>
 <script type="text/javascript" src="javascripts/album.js"></script>  
 <script>
 
 	var options = {
 			dom:'.album',
-			time:5000,
+			time:4000,
 			isVertical:false,
 			type:'html',
-			prev:'.previous',
-			next:'.nexter',
+			autoPlay:true,
 			data:[
 				'<div><img src="http://p0.meituan.net/400.0/deal/81ddef9ccce4996863e1e20a0e9938c718345.jpg.webp"></div>',
 				'<div><img src="http://p1.meituan.net/400.0/deal/a4cfd9765d7bef84bd5b64c12293557526868.jpg.webp"></div>',
-				'<div><img src="http://p0.meituan.net/400.0/deal/48263576644ca2fdffbbb189cfab903730857.jpg.webp"></div>'
+				'<div><img src="http://p0.meituan.net/400.0/deal/48263576644ca2fdffbbb189cfab903730857.jpg.webp"></div>',
+				'<div><img src="http://p0.meituan.net/400.0/deal/e2e823d9e1d9b34843227f1c6b986d7c30175.jpg.webp"></div>'
 			]
 	};
 
